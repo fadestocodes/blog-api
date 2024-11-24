@@ -1,0 +1,6 @@
+<%-include('partials/navbar')%>
+<h1>Welcome To the Home Page</h1>
+
+<%if (user){%>
+    <h2>Hello <%=user.username%></h2>
+<%}%>

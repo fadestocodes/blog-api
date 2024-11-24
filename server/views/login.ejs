@@ -1,0 +1,40 @@
+    <%-include('partials/navbar')%>
+    <br>
+    <form action="/login" method="POST" class="form">
+        <label for="username">Username: </label>
+        <input type="text" name="username" required>
+        <label for="password">Password: </label>
+        <input type="password" name="password" required>
+        <button type="submit">Log In</button>
+    </form>
+    <p id="errorMessage" style="color: red;" ></p>
+    <script>
+        const loginForm = document.querySelector(".form");
+        const errorMessage = document.getElementById("errorMessage");
+        loginForm.addEventListener("submit", async (e)=>{
+            e.preventDefault();
+            console.log('hello');
+            const formData = new FormData(loginForm);
+            const data = {
+                username : formData.get('username'),
+                password : formData.get('password')
+            };
+            console.log('Trying to log in.', data.username);
+            try {
+                const response = await fetch ('/login', {
+                    method : "POST",
+                    headers : {'Content-Type' : 'application/json'},
+                    body : JSON.stringify(data),
+                })
+                if (!response.ok){
+                    throw new Error ("Invalid login credentials")
+                }
+                const result = await response.json();
+                localStorage.setItem('token', result.token);
+                console.log('Authentication SUccess and signed JWT');
+                window.location.href = '/';
+            } catch (err) {
+                errorMessage.textContent = err.message;
+            }
+        });
+    </script>

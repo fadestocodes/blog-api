@@ -1,0 +1,17 @@
+<%-include('partials/navbar')%>
+<br>
+<form action="/sign-up" method="POST">
+    <label for="firstName">First Name: </label>
+    <input type="text" name="firstName"  placeholder="John" required >
+    <label for="lastName">Last Name: </label>
+    <input type="text" name="lastName"  placeholder="Doe" required >
+    <label for="username">Username: </label>
+    <input type="text" name="username" required >
+    <label for="email">Email: </label>
+    <input type="email" name="email"  placeholder="John@email.com" required >
+    <label for="password">Password: </label>
+    <input type="password" name="password"  required >
+    <label for="confirmPassword">Confirm Password: </label>
+    <input type="password" name="confirmPassword"  required >
+    <button type="submit"> Sign Up!</button>
+</form>

@@ -1,0 +1,26 @@
+<script>
+    async function fetchProtectedData(){
+        const token = localStorage.getItem('token');
+        console.log("token: ", token);
+        try {
+            const response = await fetch ('http://localhost:3000/admin', {
+                method : "GET",
+                headers : {
+                    Authorization : `Bearer ${token}`,
+                    'Content-Type' : 'application/json',
+                    'Accept' : 'application/json'
+                }
+            });
+            if (!response.ok){
+                throw new Error ('Unauthorized User or Session Expired');
+            }
+            const data = await response.json();
+            console.log("Data: ", data);
+        } catch (err){
+            console.error(err.message);
+            alert('Need to Login Again');
+            window.location.href = '/login';
+        }
+    } 
+    fetchProtectedData();   
+</script>
