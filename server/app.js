@@ -139,7 +139,7 @@ async function startServer (){
     // app.use('/logout', logoutRouter);
     // app.use('/admin', protectedRouter);
     
-    app.use('/api', require('./routes/apiRoutes'));
+    app.use('/api', require('./routes/apiRoute'));
     app.get('*', async (req,res)=>{
         const context = {};
         const url = req.originalUrl;
